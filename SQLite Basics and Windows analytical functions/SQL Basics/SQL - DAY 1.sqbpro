@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/hp/OneDrive/Documents/Hero Vired/Practice Documents/SQL CLASS 1/HR.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3719"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,4:mainbook"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="book" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="60"/><column index="2" value="79"/><column index="3" value="82"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">--select first_name, salary in ascending ORDER
+SELECT first_name, salary from employees order by salary asc;
+--select first_name, salary in Descending ORDER
+SELECT first_name, salary from employees order by salary DESC;
+-- Display first_name,job_id,salary from employees and order salary in desc order;
+SELECT first_name, job_id, salary from employees order by salary DESC;
+-- Display count of employees dept_wise
+SELECT COUNT(employee_id), department_id from employees group by department_id;
+-- Display sum of salary dept_wise
+SELECT SUM(salary), department_id from employees group by department_id;
+--Display job_id,count of employees in each job from table employees
+select job_id, count(employee_id) from employees group by job_id;
+--Display job_id,average salary,sum of salary job wise from table employees
+select job_id, avg(salary), sum(salary) from employees group by job_id;
+
+--count(*) -- inclues null VALUES
+--count(phone number) -- excludes null values
+
+--Display department_id,avg(salary)department wise  from employees table 
+-- where department_id &gt;2
+select department_id,avg(salary) 
+from employees
+where department_id &gt;2
+group by department_id;
+--Display job_id,sum of salary job wise from employees table where job_id is less than 8
+SELECT job_id, SUM(salary) 
+from employees
+WHERE job_id &lt; 8 
+GROUP BY job_id;
+==========================
+STRUCTURE OF ALL CLAUSE
+
+Select &lt;&gt;
+From &lt;&gt;
+Where&lt;&gt;
+Group By&lt;&gt;
+Having&lt;&gt;
+Order By&lt;
+=======================
+GROUP BY -- HAVING CLAUSE
+select &lt;&gt;
+from &lt;&gt;
+&lt;where&gt;
+group by
+&lt;having&gt;
+========
+WHERE                  HAVING 
+before grouping        after grouping 
+ column names          aggregate functions (min,max,sum,avg,count)
+
+====================================================================================================
+--1.Display average salary department wise for all departments greater than 5 and HAVING
+--average salary greater than 9000;
+SELECT AVG(salary) AS Avg_salary, department_id 
+from employees 
+WHERE department_id&gt;5 
+GROUP BY department_id
+HAVING Avg_salary &gt; 9000;
+
+--2. Display all jobs having count of employees greater than 5.
+SELECT COUNT(employee_id), job_id 
+FROM employees 
+GROUP BY job_id
+HAVING COUNT(employee_id) &gt; 5;
+--3.Use titanic TABLE for below queries
+--Display sum of fare embark town wise
+SELECT SUM(fare), embark_town 
+FROM titanic 
+GROUP BY embark_town;
+--4. Display average age class wise 
+SELECT AVG(age), class
+FROM titanic 
+GROUP BY class;
+--5.Display average fare deck wise 
+SELECT AVG(fare),deck
+FROM titanic 
+GROUP BY deck;
+--6.Display maximum fare ,minimum fare  gender wise
+SELECT max(fare) AS Max_Fare, min(fare) AS Min_Fare, sex
+FROM titanic 
+GROUP BY sex;
+--7.Display count of passengers survival wise.
+SELECT count(Passenger_No) 
+FROM titanic
+GROUP BY survived;
+===========================================================
+where ----no aggregatefunctions (only column names allowed)
+having --aggregate functions
+===========================================================
+-- Use employees table 
+1. Write a query to display sum of salary job wise.
+SELECT SUM(salary) AS sum_salary, job_id 
+FROM employees 
+GROUP BY job_id;
+2. Write a query to display all the employees having the first name with second letter as 'e'
+SELECT * 
+FROM employees 
+WHERE first_name LIKE '_e%';
+3. Write a query to display the min salary job wise from table employees
+SELECT MIN(salary), job_id 
+FROM employees
+GROUP BY job_id;
+4. Write a query to display the maximum salary department wise
+SELECT MAX(salary), department_id
+FROM employees
+GROUP BY department_id;
+5.Write a query to display first_name,salary,hire_date with salary in descending order
+SELECT first_name, salary, hire_date 
+FROM employees 
+order by salary DESC;
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
