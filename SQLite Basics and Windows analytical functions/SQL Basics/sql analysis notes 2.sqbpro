@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/hp/OneDrive/Documents/Hero Vired/Practice Documents/SQL CLASS 1/HR.db" readonly="0" foreign_keys="" case_sensitive_like="" temp_store="" wal_autocheckpoint="" synchronous=""/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="632"/><column_width id="4" width="0"/></tab_structure><tab_browse><current_table name="0,0:"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="book" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="60"/><column index="2" value="79"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">JOINS
+-- Write a query to display first_name,department name from employees,departments TABLE
+SELECT first_name,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id;
+
+-- Write a query to display first_name,department name from employees,departments 
+--TABLE  where department_id=10
+SELECT first_name,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id
+WHERE employees.department_id = 10;
+
+-- Write a query to display first_name,department_id,department name from employees,departments 
+--TABLE  where department_id=10
+SELECT first_name,departments.department_id,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id
+WHERE employees.department_id = 10;
+--Write a sql query to find those employees whose first_name contains letter 'b'.
+--Return first_name,department_id,department_name
+SELECT first_name,employees.department_id,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id
+WHERE first_name like '%b%';
+--1.Write a query to find first_name,last_name,department_id,department_name 
+--where lastname is 'Taylor'
+select first_name,last_name,employees.department_id,department_name from employees join departments
+on employees.department_id = departments.department_id WHERE last_name = 'Taylor';
+
+--2.Display first_name,last_name,departmentname for all employees in department id =8
+--order by last name
+select first_name,last_name,department_name,departments.department_id from employees join departments
+on employees.department_id = departments.department_id WHERE departments.department_id = 8
+order by last_name;
+--Write a query to display first and last name,department name,city for each employees
+select first_name,last_name,department_name,city from employees JOIN departments ON employees.department_id = 
+departments.department_id JOIN locations ON departments.location_id = locations.location_id;
+
+-- Display first_name,lastname,salary,department_name,city 
+--of all employees located in 'London'
+select first_name,last_name,salary,department_name,city from employees join departments ON 
+employees.department_id = departments.department_id JOIN locations ON departments.location_id = locations.location_id
+WHERE city = 'London';
+=================
+select &lt;&gt;
+from&lt;&gt;
+where&lt;&gt;
+group by &lt;&gt;
+having &lt;&gt;
+order by &lt;&gt;
+limit &lt;&gt;
+===========
+--Display count of employees with department name
+select count(employee_id),department_name from employees join departments 
+ON employees.department_id = departments.department_id
+group by department_name;
+Types of Joins
+1.Inner Join 
+2.Outer join 
+ a.Left outer JOIN
+ b.Right outer JOIN
+3.Self JOIN
+4.Cross join 
+
+2.LEFT OUTER JOIN --left join 
+display matching rows and unmatched rows from left side  table
+
+--Display ename,dname from emp,dept using inner join
+Select e.name,d.name from employees e join departments d </sql><current_tab id="0"/></tab_sql></sqlb_project>
