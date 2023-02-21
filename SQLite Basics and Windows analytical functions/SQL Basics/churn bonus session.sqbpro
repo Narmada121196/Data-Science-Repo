@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/hp/OneDrive/Documents/Hero Vired/Practice Documents/SQL CLASS 1/churn.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1975"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,15:mainChurn_Modelling"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">--The first 5 rows of the “CustomerId” and “Surname” columns
+select CustomerId,Surname from Churn_Modelling limit 5;
+CAN WE USE AGGREGATE FUNCTION WITH WINDOWS ANALYTICAL FUNC?
+ANS:: YES
+
+select * from Churn_Modelling;
+
+---The first 5 rows of the “CustomerId” and “Surname” columns
+select CustomerId,Surname from Churn_Modelling limit 5;
+
+--The ID of the customer with the highest balance
+Select * from Churn_Modelling;
+select RowNumber,max(Balance) from Churn_Modelling;
+--The location of the top 5 customers in term of the highest balance
+--We cannot use the MAX for this query because we need the top 5 customers. What we can do is to sort the customers based on the balance and then select the top 5 using LIMIT.
+--The location of the top 5 customers in term of the highest balance
+select Geography,Balance from Churn_Modelling order by Balance DESC limit 5;
+
+--The average age of customers who do not have a credit card
+--There is a condition that requires us to use the WHERE statement.
+
+select avg(Age) from Churn_Modelling where HasCrCard = 0;
+
+--The number of customers in each country who have more than 2 products
+--We will use another aggregate function to COUNT the number of customers. 
+--In order to group customers based on an attribute,
+-- the GROUP BY statement is used.
+
+select count(CustomerId) as Cust_count, Geography from Churn_Modelling WHERE NumOfProducts &gt; 2 
+GROUP by Geography;
+
+
+
+--Average estimated salary based on the number of products
+--We can apply the AVG function to the salary and GROUP BY the 
+--number of products.
+
+select avg(EstimatedSalary),NumOfProducts from Churn_Modelling 
+group by NumOfProducts;</sql><current_tab id="0"/></tab_sql></sqlb_project>
