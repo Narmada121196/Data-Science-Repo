@@ -1,0 +1,62 @@
+--Display all the date from table employees
+SELECT * FROM employees;
+SELECT -- WILL DO THE RETRIEVAL OF THE DATA 
+SELECT * FROM titanic;
+
+--Display all employees first_name,phone_number working in department_id=2
+select first_name,phone_number from employees where department_id=2;
+
+--DISPLAYING TWO CONDITIONS USING"AND"
+select first_name, phone_number,salary FROM employees WHERE department_id = 2 
+AND salary>5000;
+
+-- AND -- BOTH THE CONDITION IS TRUE
+-- OR - EITHER IS TRUE
+
+SELECT * FROM employees WHERE department_id=5 OR department_id=10;
+-- display all the employee who are not working in dept_id in 10
+select*from employees where department_id NOT IN (10);
+--between operator
+SELECT * FROM employees where salary between 5000 and 10000;
+
+--like clause (Pattern matching)
+wildcard operator --> match for one character -->" _ "
+wildcard operator --> match for more than one character --> "%"
+
+SELECT first_name, salary FROM employees where first_name like 'N%';
+--DISPLAY NAMES STARTING WITH "B"
+SELECT * FROM employees WHERE first_name like 'B%';
+--display names with second character as "a" and the rest of the letters ignored
+SELECT * FROM employees where first_name LIKE '_a%';
+--display all the data of the employee_id = 100;
+SELECT * FROM employees WHERE employee_id = 100;
+--DISPLAY ALL THE DATA OF THE FIRST_NAME = NEENA
+SELECT * FROM employees WHERE first_name = "Neena";
+
+
+
+--TITANIC DATABASE
+SELECT*FROM titanic;
+--1.Write a query to display all the details of passengers who survived.
+SELECT*FROM titanic WHERE survived = 1;
+
+--2. Write a query to display first_name,last_name,pclass ,age of female Gender
+SELECT first_name,last_name,pclass,age from titanic WHERE SEX = 'female';
+--3. Display all the details of Bruce Passenger_No
+SELECT * FROM titanic WHERE first_name = 'Bruce';
+--4.Display the age,first_name,embark_town,alone of passengers who survived the crash.
+SELECT age,first_name,embark_town,alone FROM titanic where survived = 1;
+--5.Display details of passengers who embarked from Southampton.
+SELECT * FROM titanic where embark_town = "Southampton";
+--6.Display all the details of passengers who survived and are in deck B
+SELECT*FROM titanic where survived = 1 and deck = 'B';
+--7.Display Passenger_No,first_name,last_name,survived,sex,age,parch 
+SELECT Passenger_No,first_name,last_name,survived,sex,age,parch FROM titanic;
+-- of all passengers who paid above 50000 and survived.
+SELECT * FROM titanic where fare > 50000 and survived = 1;
+--8.Display the deckno of all passengers who did not survive the iceberg hit.
+select DECK_NUMBER from titanic where survived = 0;
+--9.Display all the details of passengers whose age is less than 20 and were  alive
+SELECT * FROM titanic where age< 20 and alive = "yes";
+--10.Display details of passengers like first_name,deck,embark_town of all senior citizens(age should be greater than 60)
+SELECT first_name,deck,embark_town FROM titanic WHERE age > 60;
