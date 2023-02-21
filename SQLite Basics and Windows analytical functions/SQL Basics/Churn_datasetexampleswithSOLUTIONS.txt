@@ -1,0 +1,47 @@
+select * from Churn_Modelling;
+
+---The first 5 rows of the “CustomerId” and “Surname” columns
+SELECT CustomerId, Surname 
+FROM Churn_Modelling
+LIMIT 5;
+
+--The ID of the customer with the highest balance
+SELECT CustomerId, MAX(Balance)
+FROM Churn_Modelling;
+
+--The location of the top 5 customers in term of the highest balance
+--We cannot use the MAX for this query because we need the top 5 customers. What we can do is to sort the customers based on the balance and then select the top 5 using LIMIT.
+
+SELECT Geography, Balance
+FROM Churn_Modelling
+ORDER BY Balance DESC
+LIMIT 5;
+
+--The average age of customers who do not have a credit card
+--There is a condition that requires us to use the WHERE statement.
+
+SELECT AVG(Age)
+FROM Churn_Modelling
+WHERE HasCrCard = 0;
+
+--The number of customers in each country who have more than 2 products
+--We will use another aggregate function to COUNT the number of customers. In order to group customers based on an attribute, the GROUP BY statement is used.
+
+SELECT Geography, COUNT(CustomerId)
+FROM Churn_Modelling
+WHERE NumOfProducts > 2
+GROUP BY Geography;
+
+--Average estimated salary based on the number of products
+--We can apply the AVG function to the salary and GROUP BY the number of products.
+
+SELECT NumOfProducts, AVG(EstimatedSalary)
+FROM Churn_Modelling
+GROUP BY NumOfProducts;
+
+--For the query above, consider we are only interested in the number of product categories with an average higher than 100000. Thus, we need to apply a condition on the averages which can be done using the HAVING statement.
+
+SELECT NumOfProducts, AVG(EstimatedSalary)
+FROM Churn_Modelling
+GROUP BY NumOfProducts
+HAVING AVG(EstimatedSalary) > 100000;
