@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/hp/OneDrive/Documents/Hero Vired/Practice Documents/SQL CLASS 1/HR.db" readonly="0" foreign_keys="0" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="0" synchronous="1"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3719"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,4:mainbook"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="book" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="60"/><column index="2" value="79"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">--Display top 10 employees information based on their salary 
+select * from employees;
+select * from employees order by salary desc limit 10 ;
+--Display all the information of employee who earns least salary
+SELECT * FROM employees;
+SELECT * from employees ORDER BY salary ASC limit 1;
+--hiredate
+
+SELECT hire_date, 
+STRFTIME('%Y',hire_date) AS Year, 
+STRFTIME('%m',hire_date) AS Month, 
+STRFTIME('%d',hire_date) AS Day 
+FROM employees;
+
+SELECT strftime('%Y',HIRE_DATE)as year ,strftime('%m',HIRE_DATE)as month,
+strftime('%d',HIRE_DATE)as date,hire_date FROM employees;
+select date ('now');
+select hire_date, date(hire_date,'+1 month') from employees;
+--LIMIT
+--DATEFUNCTION -- strftime(), date()
+SQL 
+DQL--DATA QUERY LANGUAGE/RETRIEVAL LANGUAGE (SELECT)
+DML--DATA MANIPULATION LANGUAGE (INSERT,UPDATE,DELETE)
+DDL--DATA DEFINITION LANGUAGE(CREATE, ALTER, DROP)
+SQLITE -- INTERGER, TEXT, REAL, BLOB
+
+--create a table pizza as 
+ pizzaid -- INTEGER
+ pizzaname --- TEXT
+ price --- integer
+ 
+ 
+CREATE TABLE pizza ( pizzaid INTEGER, pizzaname TEXT, price INTEGER);
+ CREATE table pizza1(pizzaid INT, pizzaname text, price INT);
+
+--INSERT format
+insert into author (authorid,authorname) values(1,'Ankush');
+ 
+ insert into author values (3,'Sheena'),(4,'Anil');
+ insert into pizza1 values(22, 'onion',220)
+  insert into pizza1 values(20, 'tomato',190)
+ 
+ --Add 3 rows to pizza table
+INSERT INTO pizza values(101,'Margheritta',100);
+INSERT INTO pizza values(102,'Onion',120);
+INSERT INTO pizza values(103,'corn',75);
+select * from pizza;
+
+--Update the row pizzaid=1 with price =500
+UPDATE pizza SET PRICE = 500 WHERE pizzaid = 101;
+SELECT * from pizza;
+update pizza1 set price = 200 where pizzaid = 22;
+select * from pizza1;
+update pizza1 set pizzaid = 20 where price = 190;
+--Delete pizzaid=1 from pizza table
+DELETE FROM pizza WHERE pizzaid = 101;
+SELECT * FROM pizza;
+delete from pizza1 where pizzaid = 20
+--alTER TABLE --DROP,ADD COLUMN
+--alTER TABLE(rename columnname,add new column,drop/delete column)
+
+--Create table customer with following columns
+1.customerid INTEGER
+2.customername TEXT
+3.custorderamount integer
+create table customer ( customerid INTEGER, customername TEXT,custorderamount integer);
+
+1. Add 2 rows 
+(1,'Allen',300)
+(2,'Bruce',400)
+INSERT INTO customer values(1,'Allen',300);
+INSERT INTO customer values(2,'Bruce',400);
+2.update  custorderamount to 500 where customerid=1
+UPDATE customer SET custorderamount = 500 WHERE customerid=1;
+SELECT * FROM customer;
+3.delete rows where customerid=1
+DELETE FROM customer WHERE customerid = 1;
+select * from customer;
+4.drop the table customer
+drop table customer;
+select * from customer;
+
+--CREATE A TABLE BOOK 
+--WITH BOOKID INTEGER
+CREATE table book(Book_Id INTEGER);
+--ADD A NEW COLUMN BOOKPRICE INTEGER
+alter table book add book_name text;
+ALTER TABLE book ADD book_price INTEGER;
+SELECT * FROM book;
+----INSERT
+insert into book values(1,'xxx',200)
+insert into book values(2,'yyy',250)
+insert into book values(3,'zzz',270)
+SELECT * FROM book;
+--update	
+update book set book_price = '300' where Book_Id = 3;
+SELECT * FROM book;
+update book set book_name = 'zzz' where Book_Id = 3;
+SELECT * FROM book;
+update book set book_name = 'yyy' where Book_Id = 2;
+SELECT * FROM book;
+update book set book_name = 'xxx' where Book_Id = 1;
+SELECT * FROM book;
+update book set book_price = '150' where Book_Id = 1;
+SELECT * FROM book;
+update book set book_price = '200' where Book_Id = 2;
+SELECT * FROM book;
+update book set book_price = '260' where Book_Id = 3;
+=======================================
+
+drop    				delete 
+
+1.not reversible     1.reversible 
+2.DDL 				 2.dml
+3.structure&amp;data     3.data
+
+--Constraints--correct 
+--rules enforced on the tables 
+
+1. NOT NULL
+2.DEFAULT
+3.PRIMARY KEY 
+4.FOREIGN KEY
+5.CHECK
+6.UNIQUE
+
+1.not null--ensures that a column cannot have NULL value
+
+CREATE table book(Book_Id integer not null, bookprice integer);
+
+--create table e (empid integer and not null,
+--age integer default 20
+CREATE TABLE e(empid INTEGER NOT NULL,Age integer DEFAULT 20);
+INSERT INTO e values(11);
+SELECT*from e;
+
+IQUE
+
+1.not null--ensures that a column cannot have NULL value 
+
+create table book(
+bookid integer not null,
+bookprice integer); 
+
+insert into book (bookprice) values(100);
+
+
+drop table book;
+
+--2.Default ---default value will be entered 
+create table book (
+bookid integer not null,
+bookprice integer  default 500);
+
+insert into book (bookid) values(1);
+select * from book;
+--create table e (empid integer and not null,
+--age integer default 20
+
+--UNIQUE constraint(allows unique values,NULL values )
+--UNIQUE constraint(allows unique values,NULL values )
+
+--primary key--unique,not null
+--in sqlite(not null ,primary key )
+CREATE table book (bookid integer not null primary key, bookname text, bookprice integer);
+
+--Multiple Foreign Keys can be created (In other words multiple columns which are in other tables too)
+--And create a relationship, so In new table the same column values in the rows does not change.
+
+--create table dept (deptid primary key ,dname text)
+CREATE TABLE dept (deptid primary key ,dname text);
+--create table emp(empid primary key ,ename text,dept id foreign key from
+ dept(deptid)
+ 
+create table emp(empid primary key ,ename text,deptid INTEGER REFERENCES dept(deptid));
+
+create table emp(empid integer primary key not null,
+age check(age&gt;20));
+
+insert into emp values (1,18);
+
+drop table pizza;
+
+--create table pizza(pizzaid integer primary key not null,
+--pizzaname is text,
+--price is integer check constraint price &gt;100
+CREATE TABLE pizza(pizzaid integer primary key not null,
+pizzaname TEXT, price INTEGER CHECK(price&gt;100));
+
+Write a SQL Query that solves for this problem.
+
+Write a query that gets all the information about the employee with the lowest salary.
+
+
+
+SELECT * from employees ORDER BY salary LIMIT 1;
+
+Write a SQL Query that solves for this problem.
+
+Write a query that gets the average of all the job id within the company, sort descending
+
+
+
+Note :- There should be 2 columns job_id and the average of that job_id
+
+
+SELECT job_id, avg(salary) from employees GROUP By job_id ORDER By avg(salary) DESC;
+
+
+
+Write a SQL Query that solves for this problem.
+
+Write a query that gets the average of all the different job id's within the company, sort descending but only take the people with the job_id as 10 into consideration. 
+
+SELECT job_id, avg(salary) from employees WHERE job_id = 10 GROUP By job_id ORDER By avg(salary) DESC;
+
+select first_name,department_id,salary,
+lag(salary,1,'unhappy') over (PARTITION by department_id order by salary ) as dreamsal
+from employees;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
