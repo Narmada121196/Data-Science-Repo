@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/hp/OneDrive/Documents/Hero Vired/Practice Documents/SQL CLASS 1/HR.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3719"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,4:mainbook"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="book" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="60"/><column index="2" value="79"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">JOINS
+-- Write a query to display first_name,department name from employees,departments TABLE
+SELECT first_name,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id;
+
+-- Write a query to display first_name,department name from employees,departments 
+--TABLE  where department_id=10
+SELECT first_name,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id
+WHERE employees.department_id = 10;
+
+-- Write a query to display first_name,department_id,department name from employees,departments 
+--TABLE  where department_id=10
+SELECT first_name,departments.department_id,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id
+WHERE employees.department_id = 10;
+--Write a sql query to find those employees whose first_name contains letter 'b'.
+--Return first_name,department_id,department_name
+SELECT first_name,employees.department_id,department_name from employees JOIN departments ON 
+employees.department_id = departments.department_id
+WHERE first_name like '%b%';
+--1.Write a query to find first_name,last_name,department_id,department_name 
+--where lastname is 'Taylor'
+select first_name,last_name,employees.department_id,department_name from employees join departments
+on employees.department_id = departments.department_id WHERE last_name = 'Taylor';
+
+--2.Display first_name,last_name,departmentname for all employees in department id =8
+--order by last name
+select first_name,last_name,department_name,departments.department_id from employees join departments
+on employees.department_id = departments.department_id WHERE departments.department_id = 8
+order by last_name;
+
+=================================================
+SELECT/FROM/WHERE/GROUP BY/HAVING/ORDER BY/LIMIT
+=================================================
+
+--Write a query to display first and last name,department name,city for each employees
+select first_name,last_name,department_name,city from employees JOIN departments ON employees.department_id = 
+departments.department_id JOIN locations ON departments.location_id = locations.location_id;
+
+-- Display first_name,lastname,salary,department_name,city 
+--of all employees located in 'London'
+select first_name,last_name,salary,department_name,city from employees join departments ON 
+employees.department_id = departments.department_id JOIN locations ON departments.location_id = locations.location_id
+WHERE city = 'London';
+=================
+select &lt;&gt;
+from&lt;&gt;
+where&lt;&gt;
+group by &lt;&gt;
+having &lt;&gt;
+order by &lt;&gt;
+limit &lt;&gt;
+===========
+--Display count of employees with department name
+select count(employee_id),department_name from employees join departments 
+ON employees.department_id = departments.department_id
+group by department_name;
+==============================================================================
+Types of Joins
+1.Inner Join 
+2.Outer join 
+ a.Left outer JOIN
+ b.Right outer JOIN
+3.Self JOIN
+4.Cross join 
+
+2.LEFT OUTER JOIN --left join 
+display matching rows and unmatched rows from left side  table
+
+--Display ename,dname from emp,dept using inner join
+Select e.name,d.name from emp e join dep d on 
+
+left join --matching +unmatched rows LEFT table
+--display all employees who are assigned and not assigned departments 
+select ename,dname
+from emp LEFT join dept ON EMP.deptid =DEPT.DEPTID;
+
+--display all deptid with or without employees from both the TABLE
+select dept.deptid from dept left join emp on dept.deptid = emp.deptid;
+
+FULL OUTER JOIN ---unmatched and matched rows left,right
+--Cross join --doesnt meaning full result
+--SELF JOIN --joining itself
+--Display all ename with their manager name
+
+select e.empid,e.ename,m.empid,m.ename
+from emp e join emp m
+on e.mgr_id=m.empid;
+
+select * from employees;
+select e.employee_id,e.first_name,m.employee_id,m.first_name
+from employees e join employees m on m.employee_id = e.manager_id;
+
+--Joins
+Inner JOIN
+left outer JOIN
+right outer join 
+full outer join 
+cross join 
+self join
+==============
+case statment --CASE WHEN THEN ELSE END
+
+SELECT ename,sal,
+case when sal &gt;20000 then 'High Sal'
+     when sal between 15000 and 20000 then 'Avg sal'
+     else 'Basic sal' end as 'Salbifurcation'
+from emp;
+
+select ename,sal,case when sal&gt;20000 then 'High Sal'
+when sal between 15000 and 20000 then 'Avg S'
+else 'Basic S' end as 'salbif'
+from emp;
+
+==Load HR.db 
+--use employees table
+Display first_name,salary,
+if salary &gt; 20000 then display as 'High salary'
+else if salary between 15000 and 2000 then 'avg salary'
+else display 'basic salary' as 'Salbifur'
+ 
+ select first_name,salary,CASE WHEN salary &gt; 20000 THEN 'High Sal'
+ WHEN salary BETWEEN 15000 and 20000 THEN 'avg sal'
+ ELSE 'Basic Sal' 
+ END as 'salbif'
+ from employees;
+ --2. Use titanic TABLE
+display first_name,fare, if fare &gt;60000 then 'High Fare'
+if fare is between 30000 and 60000 then 'Average Fare'
+else 'Basic Fare' as 'FareStats'
+select*from titanic;
+
+
+select first_name,fare,case when fare&gt;60000 then 'High Fare'
+when fare BETWEEN 30000 and 60000 then 'Avg Fare'
+else 'Basic Fare' 
+END AS 'Farestats'
+from titanic;
+
+--3.--2. Use titanic TABLE
+display first_name,age , if age &gt;50 then 'Senior'
+if age  is between 30 and 50 then 'Average Age'
+else 'Adult' as 'AgeStats'
+select first_name,age, case when age&gt;50 then 'Senior'
+when age BETWEEN 30 and 50 then 'Avg Age'
+else 'Adult'
+End as 'Agestats'
+from titanic;
+=================================================
+CREATE TABLE `sandwich` (
+  `sid` varchar(10) primary key,
+  `name` varchar(30) DEFAULT NULL,
+  `filling` varchar(30) DEFAULT NULL,
+  `bread` varchar(30) DEFAULT NULL,
+  `price` int DEFAULT NULL) ;
+insert into sandwich values('s1',	'san-chicken',	'chicken',	'White',	50);
+insert into sandwich values('s2',	'san-chicken',	'chicken',	'Brown',	55);
+insert into sandwich values('s3',	'san-veggie',	'mixed veg',	'Brown',	50);
+insert into sandwich values('s4',	'san-veggie',	'mixed veg',	'multi grain',	55);
+insert into sandwich values('s5',	'san-aloo tikki',	'potato',	'Rye',	25);
+CREATE TABLE `sandwichorder` (
+  `sid` varchar(10) references sandwich(sid),
+  qty integer ) ;
+  
+  insert into sandwichorder values('s1',2),('s2',3),('s3',4);
+  insert into sandwichorder values(null,1);
+Joins Exercises
+  --1. Display sandwich name and qty ordered
+   select * from sandwich;
+   select * from sandwichorder;
+   select name,qty from sandwich JOIN sandwichorder on sandwich.sid = sandwichorder.sid;
+  --2.Display sandwich name which were ordered and not ordered
+  select name from sandwich LEFT JOIN sandwichorder on sandwich.sid = sandwichorder.sid;
+  --3. Display all the  orders with or without sandwich names
+  select name from  sandwichorder LEFT JOIN sandwich on sandwich.sid = sandwichorder.sid;
+
+Exercises on sandwich TABLE
+ 1. Display the details of sandwiches where price ranges from 20 to 50. 
+ select * from sandwich where price between 20 and 50;
+2. Display the details of sandwiches of brown bread.
+select * from sandwich where bread = 'Brown';</sql><current_tab id="0"/></tab_sql></sqlb_project>
