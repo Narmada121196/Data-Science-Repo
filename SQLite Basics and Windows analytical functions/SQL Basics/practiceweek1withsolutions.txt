@@ -1,0 +1,20 @@
+Use films.db
+Solutions
+
+1.Write a query to display all the data from film table.
+select * from film;
+
+2.Write a query to display title,rating from film TABLE.
+select title,rating from film;
+
+3. Write a query to display title,rating,rental rate and sort according to rental_date in descending order.
+ select title,rating,rental_rate from film order by rental_rate desc;
+
+4.Write a query to display all titles with second letter 'a'.
+select title from film where title like '_a%';
+
+5. Write a query to count the number of films rating wise.(Hint:Use group by clause). 
+ select count(film_id),rating from film group by rating;
+
+
+
