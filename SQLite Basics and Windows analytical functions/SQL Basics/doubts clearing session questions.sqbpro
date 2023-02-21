@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/hp/OneDrive/Documents/Hero Vired/Practice Documents/cereal.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1749"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:maincereal"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">--Display department_id,department_name from departments
+SELECT * FROM departments;
+select department_id,department_name from departments;
+--NOT IN
+select * from employees where department_id not in (9);
+--BETWEEN
+
+--Display all the employees having salary between 15000 and 20000
+SELECT * FROM employees WHERE salary between 15000 and 20000;
+===============================================================
+SELECT &lt;col1,col2&gt;
+FROM &lt;tablename&gt;
+where &lt;&gt;
+Group by &lt;&gt;
+Having &lt;&gt;
+order by &lt;&gt;
+==============================================================
+--Display average salary from employees table department wise
+SELECT AVG(salary), department_id FROM employees GROUP BY department_id;
+============================================================================
+--CEREAL DB
+select * from cereal;
+--1.Write a query to fetch the name and sugars whose sugar is greater than 10.
+SELECT name, sugars FROM cereal WHERE sugars &gt; 10;
+-- 2.Write a query to fetch all the records from the cereal table where 
+--there are characters like 'pp' in the name Column.
+SELECT * FROM cereal WHERE name LIKE '%pp%';
+--3.Write a query which will fetch the average of the vitamins from the below table.
+SELECT avg(vitamins) AS Avg_vitamins FROM cereal;
+--4.Write a query to fetch the Name and protein whose protein is between 3 and 5.
+SELECT name, protein FROM cereal WHERE protein BETWEEN 3 AND 5;
+--5.write a query which will fetch the average of cups according to type;
+SELECT AVG(cups),type FROM cereal GROUP BY type;
+--6.Write a query to display the   names of cereals who has fiber  between 8 and 14
+SELECT name, fiber FROM cereal where fiber BETWEEN 8 AND 14;
+--7.Write a query to fetch the names of the cereals having 'All' in their names
+--and fiber greater than 8.
+SELECT name, fiber FROM cereal WHERE name LIKE '%All%' AND fiber &gt; 8;
+**************************************************************************
+--1.Write A Query to display  count of cereals mfr wise
+SELECT count(name), mfr FROM cereal GROUP BY mfr;
+--2.Write A Query to display count of cereals type wise
+SELECT COUNT(name),type FROM cereal GROUP BY type;
+--3.Write A Query to display average  of carbo cereals mfr wise
+SELECT avg(carbo), mfr FROM cereal GROUP BY mfr;
+--4.Write A Query to display sum of  rating  of  cereals mfr wise
+SELECT SUM(rating), mfr FROM cereal GROUP BY mfr;
+----5.Write A Query to display average of protein  of  cereals mfr wise
+SELECT avg(protein), mfr FROM cereal GROUP BY mfr;
+----6.Write A Query to display sum of weight  of  cereals type wise
+SELECT SUM(weight),type FROM cereal GROUP BY type;
+--7.Write A Query to display max(potass),max(vitamins),max(rating)  of  cereals type wise
+SELECT MAX(potass),MAX(vitamins), MAX(rating),type FROM cereal GROUP BY type;
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
